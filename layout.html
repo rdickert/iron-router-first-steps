@@ -12,5 +12,37 @@
 </template>
 
 <template name='nav'>
-  Nav goes here...
+  <nav class="navbar navbar-default" role="navigation">
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        {{> navBrand}}
+      </div>
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          {{> navItems}}
+        </ul>
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+  </nav>
+</template>
+
+<template name="navBrand">
+  <a class="navbar-brand" href="{{ pathFor 'home' }}">IR Demo</a>
+</template>
+
+<template name='navItems'>
+  <li class="{{ activeIfTemplateIs 'articles' }}">
+    <a href="{{ pathFor 'articles'}}">Articles</a>
+  </li>
+  <li class="{{ activeIfTemplateIs 'about' }}">
+    <a href="{{pathFor 'about'}}">About</a>
+  </li>
 </template>
