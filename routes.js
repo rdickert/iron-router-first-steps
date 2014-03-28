@@ -1,3 +1,8 @@
+Router.configure({
+   layoutTemplate: 'layout'  //can be any template name
+ });
+
+
 Router.map(function () {
   this.route('about');  // By default, path = '/about', template = 'about'
   this.route('home', {
