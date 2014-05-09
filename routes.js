@@ -4,16 +4,26 @@ Router.configure({
 
 
 Router.map(function () {
-  this.route('about');  // By default, path = '/about', template = 'about'
   this.route('home', {
-    path: '/',  //overrides the default '/home'
+    path: '/',
   });
+  this.route('about');
   this.route('articles', {
-    data: function () {return Articles.find()}  //set template data context
+    // articles now under `articleList` instead of `this`
+    data: {
+      articleList: function () {return Articles.find()},
+      selectedArticle: {}
+    }
   });
   this.route('article', {
     path: '/article/:_id',
-    data: function () {return Articles.findOne({_id: this.params._id})},
-    template: 'fullArticle'
+    // provide data for both `articleList` and `selectedArticle`
+    data: function () {
+      return {
+        articleList: Articles.find(),
+        selectedArticle: Articles.findOne({_id: this.params._id})
+      }
+    },
+    template: 'articles'  //change template target
   });
 });
